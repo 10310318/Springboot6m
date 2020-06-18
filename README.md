@@ -23,3 +23,19 @@ gradlew bootjar
 *docker build --build-arg JAR_FILE=build/libs/*.jar -t chtti/boot1 .
 *docker run -p 8880:8880 chtti/boot1
 ````
+
+*enable other servuce like sql-server
+````shell script
+docker pull mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=UsEr1@302" -p 1433:1433 --name sqlserver2019 -d mcr.microsoft.com/mssql/server:2019-CU3-ubuntu-18.04
+````
+````
+docker exec -it sqlserver2019 "bash"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'UsEr1@302'
+CREATE DATABASE SpringBootDemo
+GO
+SELECT Name FROM sys.Databases
+GO
+quit
+exit
+````
