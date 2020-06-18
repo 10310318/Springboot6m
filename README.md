@@ -6,3 +6,20 @@ https://start.spring.io/#!type=gradle-project&language=java&platformVersion=2.3.
 ```
 
 ### Steps
+
+### build spring boot bootable jar 
+* change build.gradle, change jar filename
+```groovy
+bootJar {
+  archiveFileName = 'springBootJPA.jar'
+}
+```
+```shell script
+gradlew bootjar
+```
+*gen docker `Dockerfile`
+*use docker to create image
+````shell script
+*docker build --build-arg JAR_FILE=build/libs/*.jar -t chtti/boot1 .
+*docker run -p 8880:8880 chtti/boot1
+````
